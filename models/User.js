@@ -1,7 +1,6 @@
 const mongoose = require("mongoose"),
 	ObjectId = mongoose.Types.ObjectId;
 const Schema = mongoose.Schema;
-const MODALFUNC = require('./model_functions').functions;
 
 var UserSchema = new Schema({
 
@@ -26,17 +25,22 @@ var UserSchema = new Schema({
 		select: false
 	},
 
-	// flag to define if user is active or not, admin can manage this flag from admin panel
 	is_active: {
 		type: Boolean,
 		default: true
+	},
+
+	// flag to check if user voted or not
+	is_voted: {
+		type: Boolean,
+		default: false
 	},
 
 	// reset_token will be sent in reset password email in encryt format and will be used
 	// to verify the user
 	reset_token: {
 		type: String
-	},
+	}
 }, {
 	timestamps: {
 		createdAt: 'created',
@@ -52,10 +56,6 @@ var UserSchema = new Schema({
 		virtuals: true
 	}
 });
-
-
-UserSchema.path('created').get(MODALFUNC.string_ts);
-UserSchema.path('updated').get(MODALFUNC.string_ts);
 
 //make this available to our users in Node applications
 module.exports.User = mongoose.model('User', UserSchema);

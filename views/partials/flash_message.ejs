@@ -1,0 +1,13 @@
+<% if(error_flash) { %>
+<div class="alert alert-danger alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <%= error_flash %>
+</div>
+<% } %>
+
+<% if(success_flash){ %>
+<div class="alert alert-success alert-dismissable">
+  <button type="button" class="close" data-dismiss="alert" aria-hidden="true">×</button>
+  <%= success_flash %>
+</div>
+<% }%>
